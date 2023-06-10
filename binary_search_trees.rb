@@ -125,6 +125,26 @@ class Tree
 
     end
 
+    def inorder(node = @root, array = [])
+        return array if node.nil?
+        inorder(node.left, array)
+        array.append(node.value)
+        inorder(node.right, array)
+    end
+
+    def preorder(node = @root,array = [])
+        return array if node.nil?
+        array.append(node.value)
+        preorder(node.left, array)
+        preorder(node.right, array)
+    end
+
+    def postorder(node = @root, array = [])
+        return array if node.nil?
+        postorder(node.left, array)
+        postorder(node.right, array)
+        array.append(node.value)
+    end
 
 end
 
@@ -132,4 +152,7 @@ a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a = Tree.new([1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345])
 
 a.pretty_print
-p a.level_order
+p a.inorder
+p a.preorder
+p a.postorder
+# p a.level_order
