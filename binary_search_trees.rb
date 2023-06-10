@@ -33,7 +33,7 @@ class Tree
     def find(key, node = @root)
         # Base Cases: root is null or key is present at root
         return nil if node.nil?
-        return node.value if key == node.value
+        return node if key == node.value
 
         # Key is greater than root's key
         if node.value < key
@@ -103,10 +103,33 @@ class Tree
         node = node.left until node.left.nil?
         return node
     end
+
+
+    def level_order(node = @root)
+        return if node.nil?
+        array = []
+        answer = []
+        array.push(node.value)
+        puts array
+        while array.any?
+            current = find(array[0], node)
+            answer.append(array.shift())
+            if current.left != nil
+                array.push(current.left.value)
+            end
+            if current.right != nil
+                array.push(current.right.value)
+            end
+        end
+        return answer
+
+    end
+
+
 end
 
-# a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-a = Tree.new([1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345])
+a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+# a = Tree.new([1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345])
 
-a.delete(8)
 a.pretty_print
+p a.level_order
