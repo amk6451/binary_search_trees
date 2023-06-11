@@ -146,13 +146,31 @@ class Tree
         array.append(node.value)
     end
 
+    def height(node = @root)
+        return -1 if node.nil?
+        return [height(node.left), height(node.right)].max + 1
+    end
+
+
+    def depth(key, node = @root, depth = 0)
+        return depth if node.value == key
+        depth += 1
+        if key < node.value
+            return depth(key, node.left, depth)
+        end
+        if key > node.value
+            return depth(key, node.right, depth)
+        end
+    end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 # a = Tree.new([1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345])
 
 a.pretty_print
-p a.inorder
-p a.preorder
-p a.postorder
+# p a.inorder
+# p a.preorder
+# p a.postorder
+# p a.height
+p a.depth(23)
 # p a.level_order
