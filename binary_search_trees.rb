@@ -9,7 +9,6 @@ class Node
 end
 
 class Tree
-    # include "Node"
     def initialize(array)
         @root = build_tree(array.uniq.sort)
     end
@@ -162,15 +161,30 @@ class Tree
             return depth(key, node.right, depth)
         end
     end
+
+    def balanced?(node = @root)
+        return true if node.nil?
+        left_height = height(node.left)
+        right_height = height(node.right)
+
+        return false if (left_height - right_height).abs > 1
+        balanced?(node.right) && balanced?(node.left)
+    end
+
+    def rebalance
+        return @root = build_tree(inorder)
+    end
 end
 
 a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-# a = Tree.new([1, 3, 4, 5, 7, 8, 9, 23, 67, 324, 6345])
-
+a.insert(7000)
+a.insert(300)
+a.insert(500)
+a.insert(900)
 a.pretty_print
-# p a.inorder
-# p a.preorder
-# p a.postorder
-# p a.height
-p a.depth(23)
+p a.balanced?
+p a.rebalance
+p a.pretty_print
+p a.balanced?
+
 # p a.level_order
