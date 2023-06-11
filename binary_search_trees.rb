@@ -176,15 +176,15 @@ class Tree
     end
 end
 
-a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
-a.insert(7000)
-a.insert(300)
-a.insert(500)
-a.insert(900)
-a.pretty_print
-p a.balanced?
-p a.rebalance
-p a.pretty_print
-p a.balanced?
+# a = Tree.new([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+# a.insert(7000)
+# a.insert(300)
+# a.insert(500)
+# a.insert(900)
+# a.pretty_print
+# p a.balanced?
+# p a.rebalance
+# p a.pretty_print
+# p a.balanced?
 
 # p a.level_order
